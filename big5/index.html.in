@@ -1,0 +1,41 @@
+<!--
+$Id: index.html.in,v 1.9 2001/02/23 21:29:01 Only Exp $<
+-->
+<html>
+<head>
+<title>歡迎光臨@BBSNAME@</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link rel="stylesheet" href="bbstyle.css"></head>
+
+<body>
+<center>
+<form method=post action="@CGIURL@/bbslog">
+
+<table class=title width=90%>
+<tr><th class=title align=center>@BBSNAME@</th></tr>
+</table>
+
+<hr>
+    
+<table class=post>
+<tr><td class=post colspan=2 align=center>請輸入用戶名和密碼登錄
+<tr><td class=post align=right>您的代號:
+<td class=post align=left><input type=text name=userid size=12 maxlength=12>
+<tr><td class=post align=right>您的密碼:
+<td class=post align=left><input type=password name=passwd size=14 maxlength=14>
+</table>
+<hr>
+<input type=submit value="登錄">
+
+<table class=foot>
+<th class=foot><a href="@CGIURL@/bbsreg">新用戶注冊</a></th>
+<th class=foot><a href="@CGIURL@/bbsman">游客參觀</a></th>
+</table>
+</form>
+
+<p>本站使用中的任何問題,請与<a href=mailto:SYSOP.bbs@@BBSHOST@>SYSOP.bbs@@BBSHOST@</a>聯系</p>
+<p>Copyright&copy; 1999-2001 @BBSID@. All rights reserved.<br>
+</p>
+
+</body>
+</html>

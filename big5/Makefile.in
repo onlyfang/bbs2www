@@ -1,0 +1,87 @@
+# BBS2WWW Makefile for "@systype@"
+# $Id: Makefile.in,v 1.11 2001/02/23 21:28:59 Only Exp $
+#########################################################################
+
+# The directories where you put CGI programs and www documents
+CGI-BIN = @CGIBIN@
+WWW-ROOT = @BBSDOC@
+
+# The uid/gid info for user 'bbs'
+BBSUID=@BBSUID@
+BBSGRP=@BBSGID@
+
+# The directory of BBS source
+BBSSRC=@BBSSRC@
+BBSINCLUDE=@BBSINCLUDE@
+
+SHELL = /bin/sh
+
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+# Compile flags
+CC = @CC@
+CFLAGS = @CFLAGS@ @OS_DEF@
+LIBS = @LIBS@
+
+INSTALL = @INSTALL@
+
+#########################################################################
+# You needn't modify the following stuff                                #
+#########################################################################
+PROGRAMS = bbs0an bbsall bbsanc bbsboa bbscon bbsdoc bbslog bbsman \
+           bbsmil bbsmlc bbsnot bbsout bbspsm bbspst bbsqry bbsreg \
+           bbssdm bbssec bbssnd bbstop bbstpc bbsusr
+
+CORE = core
+
+OBJS = misc.o cgi.o article.o
+
+SRCOBJS = $(BBSSRC)/modetype.o $(BBSSRC)/pass.o
+
+all: $(PROGRAMS) 
+
+$(OBJS): bbs2www.h
+	$(CC) $(CFLAGS) -c $*.c
+
+$(PROGRAMS): $(OBJS) $(SRCOBJS)
+	$(CC) $(CFLAGS) -DBBS2WWW $@.c $(OBJS) $(SRCOBJS) -o $@ $(LIBS)
+
+install: all
+	$(INSTALL) -s -m 6755 -g $(BBSGRP) -o $(BBSUID) $(PROGRAMS) $(CGI-BIN)
+	-cp index.html bbstyle.css bbs2www20.gif $(WWW-ROOT)
+
+.PHONY:	clean cleanall
+
+clean: 
+	-rm -f *.o $(PROGRAMS) $(CORE)
+
+cleanall: clean
+	-rm -f Makefile bbs2www.h config.h index.html
+	-rm -f config.cache config.log config.status
+
+misc.o    : misc.c misc.h
+cgi.o     : cgi.c cgi.h
+article.o : article.c article.h
+bbs0an    : bbs0an.c
+bbsall    : bbsall.c
+bbsanc    : bbsanc.c
+bbsboa    : bbsboa.c
+bbscon    : bbscon.c
+bbsdoc    : bbsdoc.c
+bbslog    : bbslog.c
+bbsman    : bbsman.c
+bbsmil    : bbsmil.c
+bbsmlc    : bbsmlc.c
+bbsnot    : bbsnot.c
+bbsout    : bbsout.c
+bbspsm    : bbspsm.c
+bbspst    : bbspst.c
+bbsqry    : bbsqry.c
+bbsreg    : bbsreg.c
+bbssdm    : bbssdm.c
+bbssec    : bbssec.c
+bbssnd    : bbssnd.c
+bbstop    : bbstop.c
+bbstpc    : bbstpc.c
+bbsusr    : bbsusr.c

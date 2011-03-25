@@ -1,0 +1,42 @@
+                BBS2WWW version 2.01 - 2001.02.24
+        WWW Interface for Firebird Bulletin Board System
+    Copyright (c) 1996-2001 by Computer Application Studio
+=====================================================================
+$Id: README,v 1.14 2001/02/23 21:28:59 Only Exp $
+            
+    BBS2WWW是计算机应用工作室(CAS)专为Firebird BBS开发的WWW界面。它使
+得用户不必telnet登录到BBS中就可以使用BBS的各项功能，大大简化了用户的
+操作。它还充分利用了WWW界面美观的优点，使人在欣赏文章时更加赏心悦目。
+新版本的BBS2WWW更增加了对Cascading Style Sheets的支持，BBS管理员可以自
+由定义站点的外观表现。
+
+    BBS2WWW由二十多个小程序组成，每个小程序独立完成特定的功能。包括
+    *) 文章阅读和发表；
+    *) 分类讨论区，精华区；
+    *) 网友查询，在线用户列表；
+    *) 用户登陆，新用户注册；
+    *) 收发邮件；
+    *) 备忘录，签名档, 等等...
+    文件announce.fix中说明了和BBS2WWW相关的一个Firebird BBS的bug并给
+出了解决办法。
+
+　　BBS2WWW是一个自由软件。您可根据GNU GENERAL PUBLIC LICENSE的条款
+(详见附件COPYING)自由使用、修改或分发该软件。使用前请仔细阅读安装手
+册INSTALL和常见问题解答FAQ。
+
+　　BBS2WWW目前的最新版本是2.01版，最后修改于2001年2月24日。欢迎采用
+Firebird BBS的站点使用本系统并提出宝贵意见。BBS2WWW的最新版本可以从CAS
+的Web站点取得。地址是：   http://cas.tsx.org/
+
+
+意见或建议
+==========
+E-mail: bbs2www-devel@egroups.com, Only@china.com 
+Newsgroup: cn.bbs.admin.installbbs, cn.bbs.comp.www 
+
+特别感谢
+========
+bigkid (bigkid@sjtu.edu)
+Leeward (leeward_yang@usa.net)
+Robben (robben.bbs@bbs.ice.cycu.edu.tw)
+thunderbolt, saka (SYSOP.bbs@rose.dlut.edu.cn)
