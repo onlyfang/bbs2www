@@ -1,0 +1,94 @@
+/*
+   BBS2WWW -- WWW Interface for Firebird Bulletin Board System
+   Copyright (C) 1996-2001 Computer Application Studio.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+/*
+$Id: bbs2www.h.in,v 1.13 2001/02/23 23:41:06 Only Exp $
+*/
+
+#ifndef _BBS2WWW_H_
+#define _BBS2WWW_H_
+
+
+/* Firebird BBS版本 */
+#define @BBSVERSION@
+
+/* 所使用的字符集 */
+#define CHARSET "gb2312"
+
+#ifndef FB30
+
+/* BBS英文站名 */
+#define BBSID           "@BBSID@"
+
+/* BBS中文站名 */
+#define BBSNAME         "@BBSNAME@"
+
+/* BBS站点的域名 */
+#define BBSHOST         "@BBSHOST@"
+
+/* BBS系统的根目录 */
+#define BBSHOME         "@BBSHOME@"
+
+#endif
+
+/* BBS源文件中bbs.h文件所在的位置 */
+#include "@BBSINCLUDE@/bbs.h"
+
+/* BBS的Homepage主页 */
+#define BBSURL		"http://@BBSHOST@@BBSURL@"
+
+/* BBS的CGI程序在WWW系统中的目录 */
+#define BBSCGI		"@CGIURL@"
+
+/* BBS2WWW中使用的样式表 */
+#define STYLESHEET	"@BBSURL@bbstyle.css"
+
+#ifdef BBS2WWW
+
+/* 讨论区的分类数 */
+#define SectNum         @SECTNUM@
+
+/* 对应的分类码 */
+char CateInSect[SectNum][6] = { @CATEINSECT@ };
+
+/* 分类菜单 */
+char SectNames[SectNum][2][20] = { @SECTNAMES@ };
+
+#endif /* BBS2WWW */
+
+/* 共享内存使用的键值 */
+#define UTMP_SHMKEY @UTMPSHMKEY@
+
+/* 是否隐藏通过WWW发表文章者的IP地址 */
+#define HIDE_IP @HIDEIP@
+
+/* 是否需要身份认证 */
+#define CHECK_PERM @CHECKPERM@
+
+/* 是否允许Internet Email */
+#define ALLOW_INTERNET_EMAIL @INTERNETEMAIL@
+
+/* 发信用的sendmail程序 */
+#define SEND_MAIL "@SENDMAIL@"
+
+#include "config.h"
+#include "article.h"
+#include "cgi.h"
+#include "misc.h"
+
+#endif /* of _BBS2WWW_H_ */

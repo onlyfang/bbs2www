@@ -1,0 +1,100 @@
+$Id: announce.fix,v 1.3 1999/12/17 11:46:05 Only Exp $
+
+What? -- 問題是什么?
+====================
+Firebird BBS中的"announce.c"文件處理的是精華區相關功能. 
+其中的一些小bug會影響到BBS2WWW對精華區標題的正常顯示.
+下面解釋了這個問題并給出了解決辦法.
+(其中的行號僅供參考之用,實際位置請按程序上下關系為准.)
+
+
+Which? -- 哪些版本的Firebird有這個問題?
+=======================================
+* 中正資工(NCCU)的Firebird 2.5x版本;
+* 馬來西亞旅台同學會(MSIA)的Firebird 2.6M大紅花國度版本;
+* firebird.org.tw的1999年12月03日之前的Firebird 3.0版本.
+  3.0-19991203-SNAP之后的版本已經加入了本文給出的Fix,所以
+  如果妳使用的是最新版本,可以不用擔心這個問題.
+
+ 
+Why? -- 為什么會有問題?
+=======================
+BBS精華區的內容放在0Announce目錄下,每層目錄中都有一個
+隱含文件".Names",文件的內容是這個目錄下的文件索引,BBS
+就是根据這個文件來顯示一層層的精華區目錄.
+每個".Names"文件的幵頭都是這樣的:
+
+#
+# Title=某個精華區標題
+#
+
+"# Title="后面的字符串就是這個目錄的主標題.
+但是,由于"announce.c"文件中的一些bug,沒有正确設置這個
+主標題.雖然在BBS中可以正常顯示,但是如果打幵0Announce
+下面各層目錄的".Names"文件,會發現很多文件中的"# Title="
+后面的字符串都是錯誤的.
+
+
+Where? -- 哪些地方有問題?
+=========================
+1)函數linkto()中,約line 1026:
+	strcpy(pm.mtitle,title);
+將title拷備到pm.mtitle,而下一行
+        a_loadnames(&pm);
+中函數調用函數a_loadnames(),運行到約line 219:
+	if( strncmp( buf, "# Title=", 8 ) == 0 ) {
+	    if( pm->mtitle[0] == '\0' )
+                strcpy( pm->mtitle, buf + 8 );
+	}
+因為mtitle已經存在,實際上strcpy( pm->mtitle, buf + 8 )永遠不會執行.
+也就是說,每次調用linkto()函數,結果都造成最后一個item的title成為menu title.
+
+2)在函數a_manager()中,更改精華區目錄標題時,沒有更改對應目錄下的".Names"文件.
+
+3)在函數add_grp()中,考慮到了在"0Announce"目錄不存在時,要先建立目錄并創建
+一個".Names"文件.但下面當"0Announce/groups"目錄不存在時,衹建立了這個目錄
+而沒有創建相應的".Names"文件;對"groups"下面的各個目錄也是如此.
+
+
+How? -- 怎么解決問題?
+=====================
+1) Delete函數a_loadnames(),else if( strncmp( buf, "# Title=", 8 ) == 0 ) {}
+   模塊里面,約line 219:
+	if( pm->mtitle[0] == '\0' )
+   Change函數linkto()中,約line 1025-1026:
+        strcpy(pm.mtitle,title);
+        a_loadnames(&pm);
+   to:
+        a_loadnames(&pm);
+        if( pm.mtitle[0] == '\0' )
+            strcpy(pm.mtitle, title);
+2) Change函數a_manager()中,約line 802:
+	if( HAS_PERM( PERM_SYSOP ||HAS_PERM( PERM_ANNOUNCE )) )
+   to:
+	if( HAS_PERM( PERM_SYSOP) ||HAS_PERM( PERM_ANNOUNCE ) )
+   Add at 函數a_manager()的變量定義部分,約line 752:
+	MENU pm1;
+   Add at 函數a_manager(),case 't'下面,else if( dashd( fpath ) ) {}模塊里面,
+   約line 817: strncpy( item->title, genbuf, 72)之前:
+	pm1.path=fpath;
+	a_loadnames(&pm1);
+	strcpy(pm1.mtitle, genbuf);
+	a_savenames(&pm1);
+3) Add at 函數add_grp(),if(!dashd("0Announce/groups")) {}模塊里面,
+   約line 1070, chmod( "0Announce/groups", 0755 )之后:
+        if( (fn = fopen( "0Announce/groups/.Names", "w" )) == NULL )
+           return;
+        fprintf( fn, "#\n" );
+        fprintf( fn, "# Title=討論區精華\n");
+        fprintf( fn, "#\n" );
+        fclose(fn);
+   Add at 函數add_grp(),if(!dashd(gpath)) {}模塊里面,
+   約line 1084, chmod( gpath, 0755 )之后:
+        sprintf( buf, "%s/.Names", gpath );
+        if( (fn = fopen( buf, "w" )) == NULL )
+           return;
+        fprintf( fn, "#\n" );
+        fprintf( fn, "# Title=%s\n", gname);
+        fprintf( fn, "#\n" );
+        fclose(fn);
+4) 重新make installbbs.并且將原來出錯的.Names改正回來.

@@ -1,0 +1,60 @@
+/*
+   BBS2WWW -- WWW Interface for Firebird Bulletin Board System
+   Copyright (C) 1996-2001 Computer Application Studio.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+/*
+$Id: config.h.in,v 1.1 2001/02/23 21:29:00 Only Exp $
+*/
+
+#undef HAVE_FCNTL_H
+#undef TIME_WITH_SYS_TIME
+#undef HAVE_SYS_TIME_H
+#undef HAVE_TIME_H
+#undef HAVE_UNISTD_H
+
+#undef HAVE_FLOCK
+#undef HAVE_MKDIR
+#undef HAVE_STRSTR
+
+#include <ctype.h>
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/file.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/uio.h>
+
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+
+#ifdef HAVE_FCNTL_H
+#include <fcntl.h>
+#endif
+
+#ifdef TIME_WITH_SYS_TIME
+#include <time.h>
+#include <sys/time.h>
+#elif defined(HAVE_SYS_TIME_H)
+#include <sys/time.h>
+#else
+#include <time.h>
+#endif

@@ -1,0 +1,249 @@
+/*************************************************************************/
+/* Cascading Style Sheets for BBS2WWW                                    */
+/*************************************************************************/
+/*
+$Id: bbstyle.css,v 1.6 2001/02/02 14:22:25 Only Exp $
+*/
+
+/* 基本格式 */
+BODY
+{
+    COLOR: black;
+    BACKGROUND-COLOR: white;
+    MARGIN: 0px;
+    FONT-FAMILY: sans-serif, serif;
+    FONT-SIZE: 9pt
+}
+
+P
+{
+    COLOR: black;
+    BACKGROUND-COLOR: white;
+    MARGIN: 0px;
+    FONT-FAMILY: sans-serif, serif;
+    FONT-SIZE: 9pt
+}
+
+TABLE
+{
+    BORDER-BOTTOM-STYLE: none;
+    BORDER-LEFT-STYLE: none;
+    BORDER-RIGHT-STYLE: none;
+    BORDER-TOP-STYLE:none;
+    FONT-WEIGHT: normal;
+    FONT-FAMILY: sans-serif, serif;
+    FONT-SIZE: 9pt
+}
+
+TH
+{
+    BORDER-BOTTOM-STYLE: none;
+    BORDER-LEFT-STYLE: none;
+    BORDER-RIGHT-STYLE: none;
+    BORDER-TOP-STYLE:none;
+    FONT-WEIGHT: normal;
+    FONT-FAMILY: sans-serif, serif;
+    FONT-SIZE: 9pt
+}
+
+TD
+{
+    BORDER-BOTTOM-STYLE: none;
+    BORDER-LEFT-STYLE: none;
+    BORDER-RIGHT-STYLE: none;
+    BORDER-TOP-STYLE:none;
+    FONT-WEIGHT: normal;
+    FONT-FAMILY: sans-serif, serif;
+    FONT-SIZE: 9pt
+}
+
+HR
+{
+    COLOR: 669933;
+    SHADE: no;
+    HEIGHT:2 
+}
+
+/* 链接属性 */
+A
+{
+    TEXT-DECORATION: none
+}
+A:Link 
+{
+    COLOR: blue
+}
+A:Hover 
+{
+    TEXT-DECORATION: underline; 
+    COLOR: b0202b
+}
+A:Active
+{
+    COLOR: e8202b
+}
+
+/* 文章中使用的颜色.如果你用的不是BBS确省的黑色背景,  */
+/* 你可能需要修改它们,使它们与你的背景更协调          */
+FONT.col30
+{
+    COLOR: 000000
+}
+FONT.col31
+{
+    COLOR: 800000
+}
+FONT.col32
+{
+    COLOR: 008000
+}
+FONT.col33
+{
+    COLOR: 808000
+}
+FONT.col34
+{
+    COLOR: 000080
+}
+FONT.col35
+{
+    COLOR: 800080
+}
+FONT.col36
+{
+    COLOR: 008080
+}
+FONT.col37
+{
+    COLOR: 808080
+}
+
+/* 每页上方的标题 */
+TABLE.title
+{
+    WIDTH: 100%;
+    BORDER-COLLAPSE: collapse
+}
+TH.title
+{
+    BACKGROUND-COLOR: 336699;
+    COLOR: white;
+    WHITE-SPACE: pre;
+    PADDING-BOTTOM: 5pt;
+    PADDING-LEFT: 5pt;
+    PADDING-RIGHT: 5pt;
+    PADDING-TOP: 5pt
+}
+TH.title A:link
+{
+    COLOR: white
+}
+TH.title A:visited
+{
+    COLOR: white
+}
+TH.title A:hover
+{
+    BACKGROUND-COLOR: 669933;
+    COLOR: ffcc66
+}
+TH.title A:active
+{
+    BACKGROUND-COLOR: 669933;
+    COLOR: ffcc66
+}
+
+/* 每页中间的主要内容 */
+TABLE.body
+{
+    BORDER-COLLAPSE: seperate;
+    BORDER-COLOR: c0c0c0
+}
+TH.body
+{
+    BACKGROUND-COLOR: 669933;
+    COLOR: white;
+    PADDING-LEFT: 1pt;
+    PADDING-RIGHT: 1pt;
+    PADDING-TOP: 1pt;
+    WHITE-SPACE: pre
+}
+/* body1是奇数行的内容, body2是偶数行的内容   */
+/* 你可以给他们定义不同的颜色以实现交替的色彩 */
+TD.body1
+{
+    BACKGROUND-COLOR: cccc99;
+    PADDING-LEFT: 1pt;
+    PADDING-RIGHT: 1pt;
+    PADDING-TOP: 1pt;
+    WHITE-SPACE: pre
+}
+TD.body2
+{
+    BACKGROUND-COLOR: eeeecc;
+    PADDING-LEFT: 1pt;
+    PADDING-RIGHT: 1pt;
+    PADDING-TOP: 1pt;
+    WHITE-SPACE: pre
+}
+
+/* 阅读文章时的格式 */
+TABLE.doc
+{
+    WIDTH: 90%;
+    BORDER-COLLAPSE: collapse
+}
+TD.doc
+{
+    BACKGROUND-COLOR: ebfae4;
+    COLOR: black;
+    PADDING-LEFT: 5pt;
+    PADDING-RIGHT: 5pt;
+    PADDING-TOP: 5pt;
+    PADDING-BOTTOM: 5pt;
+    WHITE-SPACE: pre
+}
+
+/* 每页底部的链接 */
+TABLE.foot
+{
+    BORDER-COLLAPSE: seperate;
+}
+TH.foot
+{
+    BACKGROUND-COLOR: 336699;
+    COLOR: white;
+    PADDING-LEFT: 2pt;
+    PADDING-RIGHT: 2pt;
+    PADDING-TOP: 2pt;
+    PADDING-BOTTOM: 2pt;
+    WHITE-SPACE: pre
+}
+TH.foot A:link
+{
+    COLOR: white
+}
+TH.foot A:visited
+{
+    COLOR: white
+}
+TH.foot A:hover
+{
+    COLOR: ffcc66
+}
+TH.foot A:active
+{
+    COLOR: ffcc66
+}
+
+/* 发表文章或注册时用的表格 */
+TABLE.post
+{
+    BORDER-COLLAPSE: collapse
+}
+TD.post
+{
+    BACKGROUND-COLOR: ebfae4;
+    COLOR: black;
+    WHITE-SPACE: pre
+}

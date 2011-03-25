@@ -1,0 +1,40 @@
+BBS2WWW 安裝手冊
+================
+$Id: INSTALL,v 1.9 2001/02/23 21:38:25 Only Exp $
+
+1、取得BBS2WWW軟件包。
+
+    BBS2WWW的最新本版可以從CAS站點(http://cas.tsx.org/)取得。
+    GB碼版本: bbs2www-2.01.tar.gz 
+    BIG5碼版本: bbs2www-2.01-big5.tar.gz 
+
+2、解幵BBS2WWW軟件包
+
+    gunzip bbs2www-2.01.tar.gz
+    tar xvf bbs2www-2.01.tar
+
+3、配置BBS2WWW
+
+    運行 ./configure
+    請按提示輸入您的站點的配置信息。
+
+4、編譯成可執行文件
+
+    make
+
+5、安裝程序(需root權限)
+
+    su 
+    make install
+    如果妳以前安裝過BBS2WWW,請注意備份原先的index.html和bbstyle.css文件。
+
+6、測試您的BBS2WWW
+
+    如果一切順利,在瀏覽器中輸入您的BBS站點的地址，將會看到BBS2WWW的登錄界面。
+    如果運行有問題，請參考常見問題解答FAQ。
+
+7、通知作者
+
+    發送一封空郵件到: bbs2www-subscribe@egroups.com
+    作者以后進行版本更新時,將在第一時間通知您。
+
